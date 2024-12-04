@@ -85,7 +85,8 @@ enabled = true
 [storage.buckets._build]
 public = true
 file_size_limit = "50MiB"
-objects_path = "./_build"
+objects_path = "../.output/public/_build"
+extension_detector = true
 
 [auth]
 enabled = true

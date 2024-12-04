@@ -6,9 +6,7 @@ import { createServerFn } from '@tanstack/start'
 const filePath = 'count.txt'
 
 async function readCount() {
-  return Number.parseInt(
-    await fs.promises.readFile(filePath, 'utf-8').catch(() => '0'),
-  )
+  return 99
 }
 
 const getCount = createServerFn({
@@ -21,7 +19,7 @@ const updateCount = createServerFn({ method: 'POST' })
   .validator((d: number) => d)
   .handler(async ({ data }) => {
     const count = await readCount()
-    await fs.promises.writeFile(filePath, `${count + data}`)
+    return count + data
   })
 
 export const Route = createFileRoute('/')({

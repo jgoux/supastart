@@ -1,0 +1,17 @@
+localhost {
+	log {
+	output stderr
+	level DEBUG
+	format console
+}
+
+	handle /_build/* {
+		rewrite * /storage/v1/object/public{uri}
+		reverse_proxy http://host.docker.internal:54321
+	}
+
+	handle /* {
+		# rewrite * /functions/v1/app{uri}
+		reverse_proxy http://host.docker.internal:8000
+	}
+}
